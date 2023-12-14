@@ -4,19 +4,24 @@
   "description": "GraphQL example using SpaceX public API",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc",
+    "compile": "esbuild ./src/index.ts --bundle --outdir=dist --platform=node --external:sqlite3 --external:mysql2 --external:better-pg-query-stream --external:tedious --external:oracledb --external:better-sqlite3 --external:pg-query-stream --external:mysql",
     "start": "yarn compile && node ./dist/index.js"
   },
   "keywords": [],
   "author": "Ljupche Vasilev",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "@apollo/server": "^4.9.5",
-    "graphql": "^16.8.1"
+    "datasource-sql": "^2.1.0",
+    "graphql": "^16.8.1",
+    "knex": "^3.1.0",
+    "node-ts": "^6.0.1",
+    "pg": "^8.11.3"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
-    "typescript": "^5.3.3"
+    "axios": "^1.6.2",
+    "esbuild": "^0.19.9"
   }
 }

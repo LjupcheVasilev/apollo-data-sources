@@ -1,3 +1,5 @@
+import { SpaceXDatabase } from "../Infrastructure/SpaceXDatabase";
+
 export type Launch = {
     id: string;
     name: string;
@@ -22,3 +24,9 @@ export type Launch = {
     longitude: number;
     details: string;
   };
+
+  export type Context = {
+    dataSources: {
+      SpaceXDatabase: SpaceXDatabase
+    };
+  }

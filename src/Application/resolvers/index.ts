@@ -1,33 +1,34 @@
+import { Context } from "../../Domain/types";
+
 export const resolvers = {
   Launch: {
     rocket: async (
       { rocket }: { rocket: string },
-      _: any, 
-      context: any
+      _: any,
+      { dataSources }: Context
     ) => {
-      // get rocket from DB
-      
-      // return rocketData;
+      const rocketData = await dataSources.SpaceXDatabase.getRocket(rocket);
+
+      return rocketData;
     },
     launchpad: async (
       { launchpad }: { launchpad: string },
       _: any,
-      context: any
+      { dataSources }: Context
     ) => {
-      // get launchpad from DB
+      const launchpadData = await dataSources.SpaceXDatabase.getLaunchpad(launchpad);
 
-      // return launchpad;
+      return launchpadData;
     }
   },
   Query: {
     launch: async (
       parent: any,
       { id }: { id: string },
-      context: any
+      { dataSources }: Context
     ) => {
-      // get launches from DB
-
-      // return launches;
+      const launch = await dataSources.SpaceXDatabase.getLaunch(id);
+      return launch;
     },
   },
 };

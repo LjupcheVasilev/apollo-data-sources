@@ -7,6 +7,13 @@ import {
 import { typeDefs } from "./Domain/schema";
 
 import { resolvers } from "./Application/resolvers";
+import { SpaceXDatabase } from "./Infrastructure/SpaceXDatabase";
+
+const context = async () => ({
+  dataSources: {
+    SpaceXDatabase: new SpaceXDatabase()
+  }
+})
 
 const server = new ApolloServer({
   typeDefs,
@@ -16,6 +23,7 @@ const server = new ApolloServer({
 
 startStandaloneServer(server, {
   listen: { port: 4000 },
+  context
 }).then(({ url }) => {
   console.log(`🚀  Server ready at: ${url}`);
 });
